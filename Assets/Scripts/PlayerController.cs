@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextEcho)
         {
             nextEcho = Time.time + echoCD;
-            EchoController.instance.CreateEcho(transform.position, echoSpeed, echoMaxRadius, echoThickness);
+            Debug.Log("Echo");
 
         }
 
