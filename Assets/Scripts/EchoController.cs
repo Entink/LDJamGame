@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EchoController : MonoBehaviour
 {
     public static EchoController instance;
 
-    publi
+    private readonly List<EchoData> activeEchoes = new();
+
+    public IReadOnlyList<EchoData> ActiveEchoes => activeEchoes;
 
     private void Awake()
     {
@@ -25,6 +28,6 @@ public class EchoController : MonoBehaviour
     public void CreateEcho(Vector2 origin, float speed, float maxRadius, float thickness)
     {
         EchoData echo = new EchoData(origin, speed, Time.time, maxRadius, thickness);
-
+        activeEchoes.Add(echo);
     }
 }
