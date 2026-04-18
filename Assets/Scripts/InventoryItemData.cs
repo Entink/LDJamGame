@@ -5,5 +5,5 @@ public class InventoryItemData : ScriptableObject
 {
     public string itemId;
     public string itemName;
-    public string icon;
+    public Sprite icon;
 }
