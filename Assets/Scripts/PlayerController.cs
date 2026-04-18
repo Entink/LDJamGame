@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float echoCD = 1.0f;
     [SerializeField] private float nextEcho;
-    [SerializeField] private float echoSpeed = 4f;
-    [SerializeField] private float echoThickness = 1f;
-    [SerializeField] private float echoMaxRadius = 10f;
+
+    [SerializeField] private bool canMove = false;
+    [SerializeField] private bool canUsePing = false;
 
     private void Awake()
     {
@@ -28,6 +28,12 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        if(!canMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
@@ -35,10 +41,30 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed) * Time.fixedDeltaTime;
     }
 
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+
+        if(!canMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
+    public void SetCanUsePing(bool value)
+    {
+        canUsePing = value;
+    }
+
+    public void ForceFirePing()
+    {
+        nextEcho = Time.time + echoCD;
+        FirePing();
+    }
+
 
     void FirePing()
     {
-        // Spawn the wave at the player's exact position
         Instantiate(sonarPrefab, transform.position, Quaternion.identity);
         
 
