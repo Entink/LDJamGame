@@ -5,8 +5,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
 
-    [SerializeField] private float echoCD;
+    [SerializeField] private float echoCD = 4.0f;
     [SerializeField] private float nextEcho;
+    [SerializeField] private float echoSpeed = 4f;
+    [SerializeField] private float echoThickness = 1f;
+    [SerializeField] private float echoMaxRadius = 10f;
 
     private void Awake()
     {
@@ -18,7 +21,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextEcho)
         {
             nextEcho = Time.time + echoCD;
-            Debug.Log("Spacja");
+            EchoController.instance.CreateEcho(transform.position, echoSpeed, echoMaxRadius, echoThickness);
 
         }
 
