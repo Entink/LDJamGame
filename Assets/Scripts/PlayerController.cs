@@ -5,6 +5,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
 
+    [SerializeField] private float echoCD;
+    [SerializeField] private float nextEcho;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -12,10 +15,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextEcho)
+        {
+            nextEcho = Time.time + echoCD;
+            Debug.Log("Spacja");
+
+        }
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector2 movement = new Vector2(horizontal, vertical).normalized;
-        rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed) * Time.deltaTime;
+        rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed) * Time.fixedDeltaTime;
     }
+
 }
