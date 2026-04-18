@@ -3,20 +3,37 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] private float interactRadius = 1.5f;
-    [SerializeField] private LayerMask interactableLayer;
-
     private readonly List<IInteractable> interactablesInRange = new List<IInteractable>();
 
     private void Update()
     {
+        IInteractable currentInteractable = GetBestInteractable();
+        UpdatePrompt(currentInteractable);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            IInteractable interactable = GetBestInteractable();
-
-            if (interactable != null)
-                interactable.Interact(this);
+            if (currentInteractable != null)
+                currentInteractable.Interact(this);
         }
+    }
+
+    private void UpdatePrompt(IInteractable interactable)
+    {
+        if (InteractionMessageUI.Instance == null)
+            return;
+
+        if (interactable == null)
+        {
+            InteractionMessageUI.Instance.ClearPrompt();
+            return;
+        }
+
+        string text = interactable.GetInteractionText(this);
+
+        if (string.IsNullOrEmpty(text))
+            InteractionMessageUI.Instance.ClearPrompt();
+        else
+            InteractionMessageUI.Instance.SetPrompt(text);
     }
 
     private IInteractable GetBestInteractable()
@@ -57,6 +74,9 @@ public class PlayerInteract : MonoBehaviour
     {
         IInteractable interactable = other.GetComponent<IInteractable>();
 
+        if (interactable == null)
+            interactable = other.GetComponentInParent<IInteractable>();
+
         if (interactable != null && !interactablesInRange.Contains(interactable))
             interactablesInRange.Add(interactable);
     }
@@ -64,6 +84,9 @@ public class PlayerInteract : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         IInteractable interactable = other.GetComponent<IInteractable>();
+
+        if (interactable == null)
+            interactable = other.GetComponentInParent<IInteractable>();
 
         if (interactable != null)
             interactablesInRange.Remove(interactable);

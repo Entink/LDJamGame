@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -24,12 +24,27 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(InventoryItemData itemData, int amount = 1)
     {
-        if (itemData == null) return;
+        if (itemData == null)
+        {
+            Debug.LogError("InventoryManager.AddItem: itemData is NULL");
+            return;
+        }
+
+        if (string.IsNullOrEmpty(itemData.itemId))
+        {
+            Debug.LogError("InventoryManager.AddItem: itemData.itemId is empty", itemData);
+            return;
+        }
 
         if (items.ContainsKey(itemData.itemId))
             items[itemData.itemId] += amount;
         else
             items[itemData.itemId] = amount;
+
+        if (!itemDataLookup.ContainsKey(itemData.itemId))
+            itemDataLookup.Add(itemData.itemId, itemData);
+        else
+            itemDataLookup[itemData.itemId] = itemData;
 
         OnInventoryChanged?.Invoke();
     }
