@@ -742,9 +742,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7ffc04f9220814eaea8325f5341838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  sonarPrefab: {fileID: 2955566989832112227, guid: 347edd7512a0ff490a9c91f2f962fa1d, type: 3}
   speed: 300
   rb: {fileID: 0}
-  echoCD: 4
+  echoCD: 2
   nextEcho: 0
   echoSpeed: 4
   echoThickness: 1
