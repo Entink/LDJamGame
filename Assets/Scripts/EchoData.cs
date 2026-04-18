@@ -4,6 +4,7 @@ using UnityEngine;
 public class EchoData
 {
     public Vector2 origin;
+    public Vector2 direction;
     public float speed;
     public float startTime;
     public float maxRadius;

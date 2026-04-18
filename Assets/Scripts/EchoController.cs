@@ -20,6 +20,17 @@ public class EchoController : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        for (int i = activeEchoes.Count - 1; i >= 0; i--)
+        {
+            if(activeEchoes[i].IsFinished())
+            {
+                activeEchoes.RemoveAt(i);
+            }
+        }
+    }
+
     public void CreateEcho(Vector2 origin, float speed, float maxRadius, float thickness)
     {
         EchoData echo = new EchoData(origin, speed, Time.time, maxRadius, thickness);
