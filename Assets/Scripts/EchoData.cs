@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class EchoData : MonoBehaviour
+[System.Serializable]
+public class EchoData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Vector2 origin;
+    public float speed;
+    public float startTime;
+    public float maxRadius;
+    public float thickness;
+
+    public EchoData(Vector2 origin, float speed, float startTime, float maxRadius, float thickness)
     {
-        
+        this.origin = origin;
+        this.speed = speed;
+        this.startTime = startTime;
+        this.maxRadius = maxRadius;
+        this.thickness = thickness;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
