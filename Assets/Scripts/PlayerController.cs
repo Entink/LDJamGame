@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canMove = false;
     [SerializeField] private bool canUsePing = false;
 
+    [SerializeField] private AudioSource pingAudioSource;
+    [SerializeField] private AudioClip pingClip;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -66,7 +69,7 @@ public class PlayerController : MonoBehaviour
     void FirePing()
     {
         Instantiate(sonarPrefab, transform.position, Quaternion.identity);
-        
+        pingAudioSource.PlayOneShot(pingClip);
 
     }
 
