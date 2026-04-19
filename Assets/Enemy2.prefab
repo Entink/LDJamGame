@@ -310,7 +310,7 @@ MonoBehaviour:
   minStepInterval: 0.45
   maxStepInterval: 0.8
   speedForFastestSteps: 2.5
-  volume: 2
+  volume: 4
   minPitch: 0.95
   maxPitch: 1.05
 --- !u!114 &2322403737640752114
