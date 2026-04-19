@@ -1921,7 +1921,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 034a9cf1def6e5943856c139a64b027f, type: 3}
   - {fileID: 8300000, guid: 631dc6dd12e5c3144b85f5f52121b00d, type: 3}
   - {fileID: 8300000, guid: f7734bb96e9d0514fb924e5b3704afbf, type: 3}
-  targetVolume: 0.7
+  targetVolume: 0.5
   crossfadeDuration: 2
   nextTrackEarlyTime: 1.5
   playOnStart: 1
