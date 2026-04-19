@@ -15,6 +15,11 @@ public class Specimen02Brain : MonoBehaviour
     [SerializeField] private float targetReachDistance = 0.5f;
     [SerializeField] private float searchDuration = 2f;
 
+    [Header("Blocked Check")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float blockedVelocityThreshold = 0.08f;
+    [SerializeField] private float blockedTimeToRoam = 0.6f;
+
     private State currentState;
 
     private Vector2 currentRoamDirection;
@@ -23,6 +28,7 @@ public class Specimen02Brain : MonoBehaviour
 
     private float roamTimer;
     private float searchTimer;
+    private float blockedTimer;
 
     private enum State
     {
@@ -38,6 +44,7 @@ public class Specimen02Brain : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         currentState = State.Roam;
         PickNewRoamDirection();
     }
@@ -92,7 +99,32 @@ public class Specimen02Brain : MonoBehaviour
         motor.SetMoveDirection(lastInvestigateDirection);
 
         if (toTarget.magnitude <= targetReachDistance)
+        {
             StartSearch();
+            return;
+        }
+
+        if (rb != null && rb.linearVelocity.magnitude <= blockedVelocityThreshold)
+        {
+            blockedTimer += Time.deltaTime;
+
+            if (blockedTimer >= blockedTimeToRoam)
+            {
+                StartRoam();
+                return;
+            }
+        }
+        else
+        {
+            blockedTimer = 0f;
+        }
+    }
+
+    private void StartRoam()
+    {
+        currentState = State.Roam;
+        blockedTimer = 0f;
+        PickNewRoamDirection();
     }
 
     private void UpdateSearch()
@@ -112,12 +144,14 @@ public class Specimen02Brain : MonoBehaviour
     private void StartInvestigating(Vector2 targetPosition)
     {
         investigateTargetPosition = targetPosition;
+        blockedTimer = 0f;
         currentState = State.Investigate;
     }
 
     private void StartSearch()
     {
         currentState = State.Search;
+        blockedTimer = 0f;
         searchTimer = searchDuration;
     }
 

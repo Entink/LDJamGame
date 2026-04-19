@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   itemId: 3
   itemName: Green Keycard
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c763b9a8750debf4a86cecf0f734fea6, type: 3}

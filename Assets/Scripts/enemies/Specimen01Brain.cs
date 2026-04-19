@@ -19,10 +19,16 @@ public class Specimen01Brain : MonoBehaviour
     [SerializeField] private float loseSightDelay = 1.2f;
     [SerializeField] private float frontDotThreshold = 0.35f;
 
+    [Header("Blocked Check")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float blockedVelocityThreshold = 0.08f;
+    [SerializeField] private float blockedTimeToRecover = 0.5f;
+
     private int patrolIndex;
     private float loseSightTimer;
     private Vector2 facingDirection = Vector2.right;
     private State currentState;
+    private float blockedTimer;
 
     private enum State
     {
@@ -39,6 +45,7 @@ public class Specimen01Brain : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         currentState = State.Patrol;
     }
 
@@ -70,13 +77,33 @@ public class Specimen01Brain : MonoBehaviour
 
         if(toTarget.magnitude <= waypointReachDistance)
         {
+            blockedTimer = 0f;
             patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
             return;
         }
 
+
         facingDirection = toTarget.normalized;
         motor.SetMoveDirection(facingDirection);
         
+        if(IsBlocked())
+        {
+            patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
+            blockedTimer = 0;
+        }
+
+    }
+
+    private bool IsBlocked()
+    {
+        if(rb.linearVelocity.magnitude > blockedVelocityThreshold)
+        {
+            blockedTimer = 0f;
+            return false;
+        }
+
+        blockedTimer += Time.deltaTime;
+        return blockedTimer >= blockedTimeToRecover;
     }
 
     private bool CanSeePlayer()
@@ -114,7 +141,17 @@ public class Specimen01Brain : MonoBehaviour
         {
             loseSightTimer -= Time.deltaTime;
             if (loseSightTimer <= 0f)
+            {
+                blockedTimer = 0f;
                 currentState = State.Patrol;
+                return;
+            }
+        }
+
+        if(IsBlocked())
+        {
+            blockedTimer = 0f;
+            currentState = State.Patrol;
         }
     }
 

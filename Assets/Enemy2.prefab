@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4616904411910298138}
   - component: {fileID: 6857281498260491051}
   - component: {fileID: 2322403737640752114}
+  - component: {fileID: 7233379636476603158}
   m_Layer: 7
   m_Name: Enemy2
   m_TagString: Untagged
@@ -331,3 +332,16 @@ MonoBehaviour:
   directionChangeInterval: 3
   targetReachDistance: 0.5
   searchDuration: 2
+--- !u!114 &7233379636476603158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293676584943302208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4a8b9708de20f439e6d459ddacf556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyKillPlayerOnTouch
+  playerTag: Player

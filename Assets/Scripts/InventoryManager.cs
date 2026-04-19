@@ -80,4 +80,11 @@ public class InventoryManager : MonoBehaviour
 
         return null;
     }
+
+    public void ClearInventory()
+    {
+        items.Clear();
+        itemDataLookup.Clear();
+        OnInventoryChanged?.Invoke();
+    }
 }

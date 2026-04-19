@@ -55,6 +55,9 @@ public class FloorProgressManager : MonoBehaviour
 
         currentFloor = 0;
 
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.ClearInventory();
+
         if (GameStartManager.Instance != null)
             GameStartManager.Instance.ResetToFirstLaunch();
         SceneManager.LoadScene("SampleScene");
@@ -69,12 +72,15 @@ public class FloorProgressManager : MonoBehaviour
 
     public void CompleteFloorAndLoadNext()
     {
+
         CompleteFloor();
         LoadCurrentFloorScene();
     }
 
     public void LoadCurrentFloorScene()
     {
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.ClearInventory();
         SceneManager.LoadScene(GetSceneNameForFloor(currentFloor));
     }
 
