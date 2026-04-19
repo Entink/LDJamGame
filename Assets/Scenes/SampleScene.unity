@@ -8640,7 +8640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5725608dc30df4fb699977139826d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PingReactiveItem
-  pingDetectedSound: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+  pingDetectedSound: {fileID: 8300000, guid: d4fbdb999ab39a9479904782da351754, type: 3}
   hitVfxPrefab: {fileID: 6266779600237731799, guid: 85c16b76bf56bc14f92880b77db37418, type: 3}
   audioSource: {fileID: 2002729292}
   volume: 0.4
