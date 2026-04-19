@@ -54,6 +54,9 @@ public class FloorProgressManager : MonoBehaviour
         PlayerPrefs.Save();
 
         currentFloor = 0;
+
+        if (GameStartManager.Instance != null)
+            GameStartManager.Instance.ResetToFirstLaunch();
         SceneManager.LoadScene("SampleScene");
     }
 
