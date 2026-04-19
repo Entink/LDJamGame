@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector2 movement = new Vector2(horizontal, vertical).normalized;
-        rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed) * Time.fixedDeltaTime;
+        rb.linearVelocity = new Vector2(movement.x * speed, movement.y * speed);
     }
 
     public void SetCanMove(bool value)
