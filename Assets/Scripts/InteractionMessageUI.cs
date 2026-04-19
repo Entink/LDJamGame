@@ -9,7 +9,7 @@ public class InteractionMessageUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float messageDuration = 2f;
-    [SerializeField] private float fadeDuration = 0.2f;
+    //[SerializeField] private float fadeDuration = 0.2f;
 
     private Coroutine messageRoutine;
     private string currentPrompt = "";

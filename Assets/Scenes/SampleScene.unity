@@ -1356,7 +1356,6 @@ MonoBehaviour:
   messageText: {fileID: 1363361987}
   canvasGroup: {fileID: 1313103275}
   messageDuration: 2
-  fadeDuration: 0.2
 --- !u!1 &1320122540
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,13 +24,21 @@ public class EnemyFootsteps : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
 
-        footstepSource = GetComponent<AudioSource>();
+        if (footstepSource == null)
+            footstepSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
+        if (rb == null || footstepSource == null)
+            return;
+
+        if (footstepsClips == null || footstepsClips.Length == 0)
+            return;
+
         float speed = rb.linearVelocity.magnitude;
 
         if (speed < minVelocityForStep)
@@ -45,6 +53,7 @@ public class EnemyFootsteps : MonoBehaviour
             return;
 
         PlayStep();
+
         float speedLerp = Mathf.Clamp01(speed / speedForFastestSteps);
         float baseInterval = Mathf.Lerp(maxStepInterval, minStepInterval, speedLerp);
 
@@ -57,5 +66,4 @@ public class EnemyFootsteps : MonoBehaviour
         footstepSource.pitch = Random.Range(minPitch, maxPitch);
         footstepSource.PlayOneShot(clip, volume);
     }
-
 }
