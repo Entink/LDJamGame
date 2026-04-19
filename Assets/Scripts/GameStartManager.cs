@@ -18,6 +18,9 @@ public class GameStartManager : MonoBehaviour
     [SerializeField] private string wallsTilemapName = "Walls";
 
     private bool hasStarted = false;
+    private bool firstGameLaunch = true;
+
+    public bool HasStarted => hasStarted;
 
     private void Awake()
     {
@@ -51,9 +54,13 @@ public class GameStartManager : MonoBehaviour
         if (hasStarted)
             return;
 
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartGame();
+            if (firstGameLaunch)
+                StartFirstGame();
+            else
+                return;
         }
     }
 
@@ -65,7 +72,16 @@ public class GameStartManager : MonoBehaviour
     private void SetupCurrentScene()
     {
         FindSceneReferences();
-        ShowStartScreen();
+
+        if(firstGameLaunch)
+        {
+            ShowStartScreen();
+
+        }
+        else
+        {
+            StartLevelImmediately();
+        }
     }
 
     private void FindSceneReferences()
@@ -102,8 +118,9 @@ public class GameStartManager : MonoBehaviour
         SetWallsAlpha(1f);
     }
 
-    private void StartGame()
+    private void StartFirstGame()
     {
+        firstGameLaunch = false;
         hasStarted = true;
 
 
@@ -118,11 +135,29 @@ public class GameStartManager : MonoBehaviour
         
     }
 
+    private void StartLevelImmediately()
+    {
+        hasStarted = true;
+
+        startScreenRoot.SetActive(false);
+
+        SetWallsAlpha(0f);
+
+        playerController.SetCanMove(true);
+        playerController.SetCanUsePing(true);
+    }
+
     private void SetWallsAlpha(float alpha)
     {
 
         Color color = wallsTilemap.color;
         color.a = alpha;
         wallsTilemap.color = color;
+    }
+
+    public void ResetToFirstLaunch()
+    {
+        firstGameLaunch = true;
+        hasStarted = false;
     }
 }
