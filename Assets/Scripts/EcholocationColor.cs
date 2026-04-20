@@ -36,7 +36,7 @@ public class HitMarkerColorizer2D : MonoBehaviour
                 float inheritedAlpha = particles[i].startColor.a;
 
                 // Draw a tiny invisible circle around the particle to see what it landed on
-                Collider2D hit = Physics2D.OverlapCircle(particles[i].position, 0.3f);
+                Collider2D hit = Physics2D.OverlapCircle(particles[i].position, 0.1f);
 
                 if (hit != null)
                 {
