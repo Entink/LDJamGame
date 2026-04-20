@@ -1,12 +1,15 @@
 using UnityEngine;
+using TMPro;
 
 public class EndTrigger : MonoBehaviour
 {
     public GameObject endScreenUI;
+    public TextMeshProUGUI totalTimeText;
+
+    private bool triggered = false;
 
     private void Awake()
     {
-        // Automatically hide the End Screen immediately
         if (endScreenUI != null)
         {
             endScreenUI.SetActive(false);
@@ -17,12 +20,27 @@ public class EndTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.CompareTag("Player"))
+        if (triggered)
+            return;
+
+        if (!other.CompareTag("Player"))
+            return;
+
+        triggered = true;
+
+        if(FloorProgressManager.Instance != null)
         {
-            // Turn on the End Screen UI
-            endScreenUI.SetActive(true);
-            // Stop everything
-            Time.timeScale = 0f; 
+            FloorProgressManager.Instance.MarkRunCompleted();
+
+            if (totalTimeText != null)
+                totalTimeText.text = "Total Time: " + FloorProgressManager.Instance.GetFormattedRunTime();
         }
+
+        if (endScreenUI != null)
+            endScreenUI.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        
     }
 }
