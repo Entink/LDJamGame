@@ -51,7 +51,7 @@ public class HitMarkerColorizer2D : MonoBehaviour
                         particles[i].startColor = new Color(interactableColor.r, interactableColor.g, interactableColor.b, inheritedAlpha);
                         needsUpdate = true;
                     }
-                    else if (hit.CompareTag("Respawn"))
+                    else if (hit.CompareTag("RespawnAnchor"))
                     {
                         particles[i].startColor = new Color(respawnColor.r, respawnColor.g, respawnColor.b, inheritedAlpha);
                         needsUpdate = true;

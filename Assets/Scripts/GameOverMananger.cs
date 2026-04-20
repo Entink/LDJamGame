@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using TMPro;
 
@@ -49,7 +48,7 @@ public class GameOverMananger : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            RestartCurrentScene();
+            Restart();
         }
     }
 
@@ -104,17 +103,14 @@ public class GameOverMananger : MonoBehaviour
 
     }
 
-    private void RestartCurrentScene()
+    private void Restart()
     {
         Time.timeScale = 1f;
         canRestart = false;
         isGameOver = false;
         gameOverPanel.SetActive(false);
-        if (InventoryManager.Instance != null)
-            InventoryManager.Instance.ClearInventory();
 
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        
     }
 
 }

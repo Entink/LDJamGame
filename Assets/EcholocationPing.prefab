@@ -4911,6 +4911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Echolocation
   enemyColor: {r: 1, g: 0, b: 0, a: 1}
   interactableColor: {r: 0.06132126, g: 1, b: 0, a: 1}
+  respawnColor: {r: 1, g: 0, b: 0.8976784, a: 1}
 --- !u!1 &4699344032515063336
 GameObject:
   m_ObjectHideFlags: 0
@@ -9820,3 +9821,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EchoCollisionHandler2D
   enemyColor: {r: 1, g: 0, b: 0, a: 1}
   interactableColor: {r: 0.03391552, g: 1, b: 0, a: 1}
+  respawnColor: {r: 0, g: 1, b: 0.956378, a: 1}
