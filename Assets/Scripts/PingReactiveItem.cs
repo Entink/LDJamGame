@@ -29,7 +29,7 @@ public class PingReactiveItem : MonoBehaviour
         lastTriggerTime = Time.time;
 
         PlaySound();
-        SpawnHitVfx();
+        //SpawnHitVfx();
     }
 
     private void PlaySound()
