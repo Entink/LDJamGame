@@ -1446,6 +1446,7 @@ MonoBehaviour:
   revealDuration: 2
   checkpointPosition: {x: 0, y: 0}
   playerPosition: {fileID: 0}
+  respawnProtection: 2
 --- !u!82 &817291432
 AudioSource:
   m_ObjectHideFlags: 0

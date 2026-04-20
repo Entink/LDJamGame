@@ -20,12 +20,12 @@ public class GameOverMananger : MonoBehaviour
     [Header("Respawn")]
     [SerializeField] private Vector2 checkpointPosition;
     [SerializeField] private Transform playerPosition;
-    [SerializeField] private float respawnCheck = 0.5f;
+    [SerializeField] private float respawnProtection = 0.5f;
 
-    private Vector2 backupCheckpoint = Vector2.zero;
+    [SerializeField] private Vector2 backupCheckpoint = Vector2.zero;
     private bool isGameOver;
     private bool canRestart;
-
+    [SerializeField] private float respawnProtectionTimer;
     
 
     private void Awake()
@@ -54,9 +54,9 @@ public class GameOverMananger : MonoBehaviour
     {
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
 
-        respawnCheck -= Time.deltaTime;
-        if (respawnCheck <= -1f)
-            respawnCheck = -1f;
+        respawnProtectionTimer -= Time.deltaTime;
+        if (respawnProtectionTimer <= -1f)
+            respawnProtectionTimer = -1f;
 
         if (!isGameOver || !canRestart)
             return;
@@ -143,13 +143,16 @@ public class GameOverMananger : MonoBehaviour
         isGameOver = false;
         gameOverPanel.SetActive(false);
 
-        if(respawnCheck >= 0f)
+        if(respawnProtectionTimer >= 0f)
         {
             playerPosition.position = backupCheckpoint;
+            respawnProtectionTimer = respawnProtection;
+
+            return;
         }
 
         playerPosition.position = checkpointPosition;
-        
+        respawnProtectionTimer = respawnProtection;
     }
 
 }
