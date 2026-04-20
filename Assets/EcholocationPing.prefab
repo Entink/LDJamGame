@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3291246881289089157}
   - component: {fileID: 4616753679743703603}
   - component: {fileID: 1414872086416815427}
+  - component: {fileID: 1500793820583833030}
   m_Layer: 0
   m_Name: EcholocationPing
   m_TagString: Untagged
@@ -4896,6 +4897,20 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &1500793820583833030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955566989832112227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f990481f719332dc2a2dfa2bd3c55d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Echolocation
+  enemyColor: {r: 1, g: 0, b: 0, a: 1}
+  interactableColor: {r: 0.06132126, g: 1, b: 0, a: 1}
 --- !u!1 &4699344032515063336
 GameObject:
   m_ObjectHideFlags: 0
@@ -4907,6 +4922,7 @@ GameObject:
   - component: {fileID: 5861471873953796504}
   - component: {fileID: 5898400555237111840}
   - component: {fileID: 6709093302071025573}
+  - component: {fileID: 4594462541795648302}
   m_Layer: 0
   m_Name: HitMarker
   m_TagString: Untagged
@@ -9790,3 +9806,17 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &4594462541795648302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4699344032515063336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f990481f719332dc2a2dfa2bd3c55d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EchoCollisionHandler2D
+  enemyColor: {r: 1, g: 0, b: 0, a: 1}
+  interactableColor: {r: 0.03391552, g: 1, b: 0, a: 1}
