@@ -6,6 +6,7 @@ public class HitMarkerColorizer2D : MonoBehaviour
     [Header("Colors (Alpha is inherited natively!)")]
     public Color enemyColor;
     public Color interactableColor;
+    public Color respawnColor;
 
     private ParticleSystem ps;
     private ParticleSystem.Particle[] particles;
@@ -48,6 +49,11 @@ public class HitMarkerColorizer2D : MonoBehaviour
                     else if (hit.CompareTag("Interactable"))
                     {
                         particles[i].startColor = new Color(interactableColor.r, interactableColor.g, interactableColor.b, inheritedAlpha);
+                        needsUpdate = true;
+                    }
+                    else if (hit.CompareTag("Respawn"))
+                    {
+                        particles[i].startColor = new Color(respawnColor.r, respawnColor.g, respawnColor.b, inheritedAlpha);
                         needsUpdate = true;
                     }
                 }
