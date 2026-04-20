@@ -37,6 +37,7 @@ public class GameOverMananger : MonoBehaviour
         Instance = this;
 
         playerPosition = GameObject.Find("Player").GetComponent<Transform>();
+        SetCheckpointPosition(playerPosition);
         gameOverPanel.SetActive(false);
     }
 
@@ -74,6 +75,7 @@ public class GameOverMananger : MonoBehaviour
         PlayRandomGameOverClip();
 
         yield return new WaitForSecondsRealtime(revealDuration);
+        HideEnemy(enemyObject);
 
         gameOverPanel.SetActive(true);
 
@@ -108,6 +110,18 @@ public class GameOverMananger : MonoBehaviour
 
     }
 
+    private void HideEnemy(GameObject enemyObject)
+    {
+        if (enemyObject == null)
+            return;
+
+        SpriteRenderer sr = enemyObject.GetComponent<SpriteRenderer>();
+
+        Color color = sr.color;
+        color.a = 0f;
+        sr.color = color;
+    }
+
     public void SetCheckpointPosition(Transform pos)
     {
         checkpointPosition = pos.position;
@@ -119,6 +133,7 @@ public class GameOverMananger : MonoBehaviour
         canRestart = false;
         isGameOver = false;
         gameOverPanel.SetActive(false);
+
 
         playerPosition.position = checkpointPosition;
         
