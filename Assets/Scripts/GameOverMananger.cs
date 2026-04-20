@@ -44,11 +44,14 @@ public class GameOverMananger : MonoBehaviour
     private void Start()
     {
         gameOverPanel.SetActive(false);
-
+        playerPosition = GameObject.Find("Player").GetComponent<Transform>();
+        SetCheckpointPosition(playerPosition);
     }
 
     private void Update()
     {
+        playerPosition = GameObject.Find("Player").GetComponent<Transform>();
+
         if (!isGameOver || !canRestart)
             return;
 
