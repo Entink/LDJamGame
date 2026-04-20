@@ -17,6 +17,10 @@ public class GameOverMananger : MonoBehaviour
     [SerializeField] private float revealedEnemyAlpha = 0.5f;
     [SerializeField] private float revealDuration = 2f;
 
+    [Header("Respawn")]
+    [SerializeField] private Vector2 checkpointPosition;
+    [SerializeField] private Transform playerPosition;
+
     private bool isGameOver;
     private bool canRestart;
 
@@ -32,6 +36,7 @@ public class GameOverMananger : MonoBehaviour
 
         Instance = this;
 
+        playerPosition = GameObject.Find("Player").GetComponent<Transform>();
         gameOverPanel.SetActive(false);
     }
 
@@ -103,6 +108,11 @@ public class GameOverMananger : MonoBehaviour
 
     }
 
+    public void SetCheckpointPosition(Transform pos)
+    {
+        checkpointPosition = pos.position;
+    }
+
     private void Restart()
     {
         Time.timeScale = 1f;
@@ -110,6 +120,7 @@ public class GameOverMananger : MonoBehaviour
         isGameOver = false;
         gameOverPanel.SetActive(false);
 
+        playerPosition.position = checkpointPosition;
         
     }
 
