@@ -5,6 +5,11 @@ public class PlayerInteract : MonoBehaviour
 {
     private readonly List<IInteractable> interactablesInRange = new List<IInteractable>();
 
+    private void Start()
+    {
+        GameOverMananger.Instance.SetCheckpointPosition(this.gameObject.transform);
+    }
+
     private void Update()
     {
         IInteractable currentInteractable = GetBestInteractable();

@@ -158,7 +158,7 @@ MonoBehaviour:
   consumeItem: 1
   missingItemMessage: You need a Key.
   audioSource: {fileID: 8292457603477938815}
-  openDoorClip: {fileID: 8300000, guid: 2478f5a055c01a345a256077a4d6e2f6, type: 3}
+  openDoorClip: {fileID: 8300000, guid: 36b8815fce6201445bf17e1fd4fdf6f2, type: 3}
   delay: 0.5
   doorCollider: {fileID: 7529712426611454846}
   spriteRenderer: {fileID: 5498115694237787561}
@@ -274,7 +274,7 @@ MonoBehaviour:
   pingDetectedSound: {fileID: 8300000, guid: 426da3f636efa07458c77730fdd7a1f1, type: 3}
   hitVfxPrefab: {fileID: 3782023353804712248, guid: 494af9ddaa7a7e04da6188732db008c0, type: 3}
   audioSource: {fileID: 2688513926406708183}
-  volume: 0.3
+  volume: 0.2
   cooldown: 2
 --- !u!82 &2688513926406708183
 AudioSource:
