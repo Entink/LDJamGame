@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource pingAudioSource;
     [SerializeField] private AudioClip pingClip;
 
+    [SerializeField] private float quitHoldDuration = 3f;
+    private float escHoldTimer = 0f;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -23,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        HandleQuitInput();
+
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextEcho)
         {
             nextEcho = Time.time + echoCD;
@@ -73,4 +78,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    private void QuitGame()
+    {
+        Debug.Log("Quitting game...");
+
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
+    }
+
+    private void HandleQuitInput()
+    {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            escHoldTimer += Time.unscaledDeltaTime;
+
+            if(escHoldTimer >= quitHoldDuration)
+            {
+                QuitGame();
+            }
+        }
+        else
+        {
+            escHoldTimer = 0f;
+        }
+    }
 }
